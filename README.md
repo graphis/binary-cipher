@@ -7,19 +7,26 @@ Building
 ========
 
 Run your favourite terminal emulator and go to binary-cipher directory:
+
 `$ cd /full/path/to/your/binary-ciper/`
+
 Run `make` to compile the program:
+
 `$ make`
 
 Usage
 =====
 
 To generate binary code from file image.jpg just type:
+
 `$ ./binary-cipher --encrypt image.jpg > image.bin`
+
 Now you have binary code of image.jpg in image.bin
 
 To decrypt file from binary code just type:
+
 `$ ./binary-cipher --decrypt image.bin > image.jpg`
+
 Now you have your file in image.jpg
 
 Licence
