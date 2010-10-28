@@ -59,6 +59,7 @@ int main(int argc, char** argv) {
 		}
 		cerr << "\n[I] Done! :-)" << endl;
 	} else {
+		cerr << "[I] Decrypting bytes..." << endl;
 		unsigned char bits[8];
 		while(true) {
 			int i;
@@ -75,6 +76,6 @@ int main(int argc, char** argv) {
 			}
 			cout << decrypter::decrypt(bits);
 		}
-		cerr << "\n[I] Done!" << endl;
+		cerr << "\n[I] Done! :-)" << endl;
 	}
 }
