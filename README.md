@@ -29,7 +29,7 @@ To decrypt file from binary code just type:
 
 Now you have your file in image.jpg
 
-Licence
+License
 =======
 
 Copyright (C) 2010 Patryk Jaworski <skorpion9312@gmail.com>

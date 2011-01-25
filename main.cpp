@@ -11,7 +11,7 @@ void printHeader() {
 	cerr << "=============== Binary cipher ===============" << endl;
 	cerr << "= Author: Patryk Jaworski" << endl;
 	cerr << "= Contact: skorpion9312@gmail.com" << endl;
-	cerr << "= Licence: GNU GPLv3 " << endl;
+	cerr << "= License: GNU GPLv3 " << endl;
 	cerr << "====== (Copyright by Patryk Jaworski) =======" << endl;
 }
 
