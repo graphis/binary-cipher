@@ -1,6 +1,6 @@
-#include "encrypter.hpp"
-const unsigned char* encrypter::encrypt(const unsigned char byte) {
-	unsigned char* bin=new unsigned char[8];
+#include "encoder.hpp"
+const uint8_t* encoder::encode(const uint8_t byte) {
+	uint8_t* bin=new uint8_t[8];
 	short int bi=0;
 	short int b=(short int)byte;
 	while(b>0) {
@@ -16,7 +16,7 @@ const unsigned char* encrypter::encrypt(const unsigned char byte) {
 	}
 	bi=8;
 	for(short int i=0; i<4; i++) {
-		unsigned char tmp=bin[i];
+		uint8_t tmp=bin[i];
 		bin[i]=bin[bi-(i+1)];
 		bin[bi-(i+1)]=tmp;
 	}

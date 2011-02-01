@@ -3,7 +3,7 @@ CPP_FLAGS = -Wall
 OBJS := $(patsubst %.cpp, %.o, $(wildcard *.cpp))
 
 all: binary-cipher
-	@echo "\n ===== Done! =====\n"
+	@echo " ===== Done! ====="
 
 binary-cipher: $(OBJS)
 	$(CPP) $(CPP_FLAGS) $^ -o $@

@@ -1,4 +1,5 @@
-
+#ifndef EXCEPTIONS_HPP
+#define EXCEPTIONS_HPP
 class skorpionException {
 	protected:
 		char msg[1024];
@@ -12,3 +13,4 @@ class endOfFile : public skorpionException{
 	public:
 		endOfFile(const char* msg);
 };
+#endif

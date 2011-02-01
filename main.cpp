@@ -3,8 +3,8 @@
 #include <cstdlib>
 #include <string.h>
 #include "reader.hpp"
-#include "encrypter.hpp"
-#include "decrypter.hpp"
+#include "encoder.hpp"
+#include "decoder.hpp"
 using namespace std;
 
 void printHeader() {
@@ -17,7 +17,7 @@ void printHeader() {
 
 void printUsage() {
 	printHeader();
-	cerr << "\nUsage:\n\t./binary-cipher (--encrypt or --decrypt) PATH_TO_YOUR_FILE\n\n";
+	cerr << "\nUsage:\n\t./binary-cipher (--encode or --decode) PATH_TO_YOUR_FILE\n\n";
 }
 
 int main(int argc, char** argv) {
@@ -26,9 +26,9 @@ int main(int argc, char** argv) {
 		return 1;
 	}
 	bool encrypt;
-	if(!strcmp("--encrypt", argv[1]))
+	if(!strcmp("--encode", argv[1]))
 		encrypt=true;
-	else if(!strcmp("--decrypt", argv[1]))
+	else if(!strcmp("--decode", argv[1]))
 		encrypt=false;
 	else {
 		printUsage();
@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
 	}
 	printHeader();
 	cerr << "[I] Input file: " << argv[2] << endl;
-	cerr << "[I] " << (encrypt?"Encryption":"Decryption") << " mode." << endl;
+	cerr << "[I] " << (encrypt?"Encoding":"Decoding") << " mode." << endl;
 	sleep(1);
 	reader r;
 	try {
@@ -49,8 +49,8 @@ int main(int argc, char** argv) {
 		cerr << "[I] Generating binary code for your file..." << endl;
 		while(true) {
 			try {
-				unsigned char b=r.readByte();
-				cout << encrypter::encrypt(b);
+				uint8_t b=r.readByte();
+				cout << encoder::encode(b);
 			} catch(endOfFile e) {
 				break;
 			} catch(skorpionException e) {
@@ -59,8 +59,8 @@ int main(int argc, char** argv) {
 		}
 		cerr << "\n[I] Done! :-)" << endl;
 	} else {
-		cerr << "[I] Decrypting bytes..." << endl;
-		unsigned char bits[8];
+		cerr << "[I] Decoding bytes..." << endl;
+		uint8_t bits[8];
 		while(true) {
 			int i;
 			try {
@@ -74,7 +74,7 @@ int main(int argc, char** argv) {
 			} catch(skorpionException e) {
 				cerr << "[E] Error: " << e.getMessage() << endl;
 			}
-			cout << decrypter::decrypt(bits);
+			cout << decoder::decode(bits);
 		}
 		cerr << "\n[I] Done! :-)" << endl;
 	}

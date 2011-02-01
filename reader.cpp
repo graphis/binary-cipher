@@ -1,6 +1,8 @@
-#include "reader.hpp"
 #include <string.h>
 #include <iostream>
+#include <cstdio>
+#include "exceptions.hpp"
+#include "reader.hpp"
 
 using namespace std;
 
@@ -25,14 +27,15 @@ void reader::open(const char* n) throw(skorpionException) {
 	cerr << "[I] File size: " << size << " bytes..." << endl;
 }
 
-unsigned char reader::readByte() throw(skorpionException, endOfFile) {
+uint8_t reader::readByte() throw(skorpionException, endOfFile) {
 	if(file==NULL)
 		throw skorpionException("Open file first...");
 	if(blen==bpos) {
-		blen=fread(buffer, 1, 1024, file);
+		blen=fread(buffer, 1, 524288, file);
 		if(blen==0)
 			throw endOfFile("EOF");
 		bpos=0;
 	}
 	return buffer[bpos++];
 }
+
