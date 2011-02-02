@@ -19,13 +19,13 @@ Usage
 
 To generate binary code from file image.jpg just type:
 
-`$ ./binary-cipher --encrypt image.jpg > image.bin`
+`$ ./binary-cipher --encode image.jpg > image.bin`
 
 Now you have binary code of image.jpg in image.bin
 
-To decrypt file from binary code just type:
+To decode file from binary code just type:
 
-`$ ./binary-cipher --decrypt image.bin > image.jpg`
+`$ ./binary-cipher --decode image.bin > image.jpg`
 
 Now you have your file in image.jpg
 
