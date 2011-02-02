@@ -1,5 +1,5 @@
 #include "encoder.hpp"
-const uint8_t* encoder::encode(const uint8_t byte) {
+uint8_t* encoder::encode(const uint8_t byte) {
 	uint8_t* bin=new uint8_t[8];
 	short int bi=0;
 	short int b=(short int)byte;
