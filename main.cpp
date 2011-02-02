@@ -1,11 +1,23 @@
 #include <iostream>
-#include <stdio.h>
+#include <string>
+#include <cstdio>
 #include <cstdlib>
-#include <string.h>
+#include <cstring>
+#include <map>
+#include <queue>
 #include "reader.hpp"
 #include "encoder.hpp"
 #include "decoder.hpp"
+#include "filter.hpp"
+#include "stdcipher.hpp"
+
 using namespace std;
+
+std::map<string, filter*> filters;
+
+void initFilters() {
+	filters["stdcipher"]=new stdcipher();
+}
 
 void printHeader() {
 	cerr << "=============== Binary cipher ===============" << endl;
@@ -17,10 +29,21 @@ void printHeader() {
 
 void printUsage() {
 	printHeader();
-	cerr << "\nUsage:\n\t./binary-cipher (--encode or --decode) PATH_TO_YOUR_FILE\n\n";
+	cerr << "\nUsage:\n\t./binary-cipher MODE (-f FILTER -f FILTER2 ...) (-k KEY1 -k KEY2 ...) PATH_TO_YOUR_FILE\n\n";
+	cerr << "Modes:" << endl;
+	cerr << "\t --encode - encode your file into binary code" << endl;
+	cerr << "\t --decode - decode your file from binary code" << endl << endl;
+	cerr << "Filters:" << endl;
+	for(map<string, filter*>::const_iterator i=filters.begin(), e=filters.end(); i!=e; ++i) {
+		cerr << "\t" << i->first << " - " << (i->second)->getDescription() <<  endl;
+	}
+	cerr << "\n\n";
 }
 
 int main(int argc, char** argv) {
+	initFilters();
+	queue<string> loadedFilters;
+	queue<int> keys;
 	if(argc<3) {
 		printUsage();
 		return 1;
