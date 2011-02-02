@@ -122,11 +122,11 @@ int main(int argc, char** argv) {
 					if(f->feedMode()==0) {
 						if(encodedByte!=NULL) {
 							byte=decoder::decode(encodedByte);
+							delete encodedByte;
 							encodedByte=NULL;
 						}
 						f->feed(&byte);
-					}
-					else {
+					} else {
 						if(encodedByte==NULL)
 							encodedByte=encoder::encode(byte);
 						f->feed(encodedByte);
@@ -134,6 +134,7 @@ int main(int argc, char** argv) {
 				}
 				encodedByte=encoder::encode((encodedByte==NULL?byte:decoder::decode(encodedByte)));
 				cout << encodedByte;
+				delete encodedByte;
 			}
 		} catch (endOfFile e) {
 		} catch(skorpionException e) {
