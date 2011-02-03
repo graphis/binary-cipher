@@ -2,7 +2,9 @@
 #include <iostream>
 
 void stdcipher::feed(uint8_t* byte) {
-	std::cerr << "stdcipher::feed()" << std::endl;
+	for(int i=0; i<keysLength; i++) {
+		*byte^=keys[i];
+	}
 }
 
 bool stdcipher::feedMode() {

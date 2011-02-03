@@ -149,8 +149,6 @@ int main(int argc, char** argv) {
 			uint8_t* encodedByte=new uint8_t[8];
 			bool stop=false;
 			while(true) {
-				if(stop)
-					break;
 				for(short int i=0; i<8; i++) {
 					try {
 						encodedByte[i]=r.readByte();
@@ -160,6 +158,8 @@ int main(int argc, char** argv) {
 						break;
 					}
 				}
+				if(encodedByte[0]=='\0')
+					break;
 				for(unsigned int i=0; i<loadedFilters.size(); i++) {
 					filter* f=loadedFilters[i];
 					f->setMode(1);
