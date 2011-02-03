@@ -38,6 +38,7 @@ void printUsage() {
 		cerr << "\t" << i->first << " - " << (i->second)->getDescription() <<  endl;
 		cerr << "\t  -> Author: " << (i->second)->author() << endl;
 		cerr << "\t  -> Operate mode: " << ((i->second)->feedMode()==0?"standard bytes":"encoded bytes") << endl;
+		cerr << "\t  -> Need keys: " << ((i->second)->needKeys()?"yes":"no") << endl;
 	}
 	cerr << "\n\n";
 }
@@ -72,7 +73,7 @@ int main(int argc, char** argv) {
 			i++;
 		} else if(strcmp(argv[i], "-k")==0) {
 			int key=atoi(argv[i+1]);
-			if(key<=0 || key>=255) {
+			if(key<=0 || key>255) {
 				cerr << "[E] Key must be an integer [1-255]..." << endl;
 				exit(1);
 			}
@@ -141,7 +142,7 @@ int main(int argc, char** argv) {
 			cerr << "[E] " << e.getMessage() << endl;
 			exit(1);
 		}
-		cerr << "[OK] All done." << endl;
+		cerr << "\n[OK] All done." << endl;
 	} else if(mode==2) {
 		try {
 			uint8_t byte;
