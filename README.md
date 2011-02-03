@@ -14,7 +14,7 @@ Run `make` to compile the program:
 
 `$ make`
 
-Usage
+Simple usage
 =====
 
 To generate binary code from file image.jpg just type:
@@ -28,6 +28,19 @@ To decode file from binary code just type:
 `$ ./binary-cipher --decode image.bin > image.jpg`
 
 Now you have your file in image.jpg
+
+Working with filters
+====================
+
+To encrypt your file just type:
+
+`$ ./binary-cipher --encode -f stdcipher -k 168 -k 93 -k 12 -k 168 image.jpg > image.encrypted.bin`
+
+The program will use all above keys to encrypt your file.
+
+To decrypt file, you must use the same keys in the same order:
+
+`$ ./binary-cipher --decode -f stdcipher -k 168 -k 93 -k 12 -k 168 image.encrypted.bin > image.origin.jpg`
 
 License
 =======
