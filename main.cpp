@@ -33,6 +33,10 @@ void printUsage() {
 	cerr << "Modes:" << endl;
 	cerr << "\t --encode - encode your file into binary code" << endl;
 	cerr << "\t --decode - decode your file from binary code" << endl << endl;
+	cerr << "Options:" << endl;
+	cerr << "\t -f FILTER_NAME - Add a filter" << endl;
+	cerr << "\t -k [0,255] - Add a key" << endl;
+	cerr << "\t -p PASSWORD - Generate keys from password (can be use with -k)" << endl << endl;
 	cerr << "Filters:" << endl;
 	for(map<string, filter*>::const_iterator i=filters.begin(), e=filters.end(); i!=e; ++i) {
 		cerr << "\t" << i->first << " - " << (i->second)->getDescription() <<  endl;
@@ -79,6 +83,16 @@ int main(int argc, char** argv) {
 			}
 			cerr << "[I] Adding key (" << key << ")." << endl;
 			keys[keysI++]=key;
+			i++;
+		} else if(strcmp(argv[i], "-p")==0) {
+			const char* pass=argv[i+1];
+			int passLen=strlen(pass);
+			cerr << "[I] Generating keys from password: " << pass << endl;
+			int p;
+			for(p=0; p<passLen; p++) {
+				keys[keysI++]=(int)pass[p];
+			}
+			cerr << "[I] Added keys: " << p << endl;
 			i++;
 		} else {
 			if(name==NULL)
